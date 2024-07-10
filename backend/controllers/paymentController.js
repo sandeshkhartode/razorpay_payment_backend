@@ -49,15 +49,3 @@ export const createOrder = async (req, res) => {
       });
     }
   };
-
-  // for only backend use
-  export const getPaymentDetails = async (req, res) => {
-    const { payment_id, amount } = req.body;
-  
-    try {
-      const captureResponse = await instance.payments.capture(payment_id, amount * 100, 'INR');
-      res.status(200).json(captureResponse);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
